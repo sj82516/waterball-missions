@@ -4,7 +4,7 @@ require_relative 'card'
 class ShowdownGame < CardGame
   def initialize(players, deck)
     super(players, deck)
-    @round = 0
+    @round = 1
   end
 
   def init_deck
@@ -26,33 +26,31 @@ class ShowdownGame < CardGame
 
   SEGMENT = "========"
 
-  def take_turn
-    @round += 1
-    pp SEGMENT
-    pp "Round #{@round}"
+  def player_take_turn(player)
+    @cards << player.show_card
+  end
 
-    max_card = nil
-    winner = nil
-    cards = []
-    @players.each do |player|
-      card = player.show_card
-      cards << card
-      max_card ||= card
-      winner ||= player
+  def turn_check
+    max_card ||= @cards.first
+    winner ||= @players.first
 
+    @cards.each_with_index do |card, idx|
       if card.is_bigger?(max_card)
         max_card = card
-        winner = player
+        winner = @players[idx]
       end
     end
 
-    player_show_cards = cards.map.with_index { |card, i|
+    player_show_cards = @cards.map.with_index { |card, i|
       "#{@players[i].name} show #{card.to_s}"
     }.join(", ")
     pp "cards: #{player_show_cards}"
     pp "winner: #{winner.name}"
 
     winner.gain_point
+    @round += 1
+    @cards = []
+    pp SEGMENT
   end
 
   def show_winner

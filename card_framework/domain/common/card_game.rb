@@ -24,7 +24,11 @@ class CardGame
 
   def start
     until is_game_over?
-      take_turn
+      @players.each do |player|
+        player_take_turn(player)
+      end
+
+      turn_check
     end
 
     pp "winner is #{show_winner.name}"
@@ -43,7 +47,11 @@ class CardGame
     raise "not implemented"
   end
 
-  def take_turn
+  def player_take_turn(player)
+    raise NotImplementedError
+  end
+
+  def turn_check
     raise "not implemented"
   end
 

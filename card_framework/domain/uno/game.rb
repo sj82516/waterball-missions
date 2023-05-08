@@ -26,7 +26,7 @@ class UnoGame < CardGame
 
   SEGMENT = "========"
 
-  def take_turn
+  def player_take_turn(player)
     @top_card ||= @deck.draw_card
 
     if @deck.is_empty?
@@ -37,22 +37,25 @@ class UnoGame < CardGame
       @deck.shuffle
     end
 
-    @players.each do |player|
-      pp "current top card: #{@top_card.to_s}"
+    pp "current top card: #{@top_card.to_s}"
 
-      card = player.show_card(@top_card)
-      if card.nil?
-        pp "#{player.name} cannot show card. draw one from deck."
-        player.add_card(@deck.draw_card)
-        next
-      end
-
-      @discard_cards << @top_card
-      @top_card = card
+    card = player.show_card(@top_card)
+    if card.nil?
+      pp "#{player.name} cannot show card. draw one from deck."
+      player.add_card(@deck.draw_card)
+      return
     end
+
+    @discard_cards << @top_card
+    @top_card = card
   end
 
   def show_winner
     @players.find { |player| player.is_empty_hand? }
+  end
+
+  private
+  def turn_check
+    # do nothing
   end
 end
