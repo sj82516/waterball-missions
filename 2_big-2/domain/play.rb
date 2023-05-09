@@ -19,4 +19,8 @@ class Play
   def to_s
     "#{@pattern_hlr.pattern} #{@cards.map(&:to_s)}"
   end
+
+  def is_contain_club_3?
+    @cards.any? { |card| card == CLUB_3 }
+  end
 end

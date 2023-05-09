@@ -41,5 +41,9 @@ class Hand
     puts card_lines
   end
 
+  def is_contain_club_3?
+    @cards.any? { |card| card == CLUB_3 }
+  end
+
   attr_reader :cards
 end

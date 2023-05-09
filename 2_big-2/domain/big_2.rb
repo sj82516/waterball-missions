@@ -27,7 +27,7 @@ class Big2
     end
 
     round = 1
-    @top_player_idx = @players.find_index { |player| player.hand.cards.include?(CLUB_3) }
+    @top_player_idx = @players.find_index { |player| player.hand.is_contain_club_3? }
     @top_player = @players[@top_player_idx]
     @current_player_idx = @top_player_idx
     @current_player = @players[@current_player_idx]
@@ -42,10 +42,10 @@ class Big2
           puts "輪到 #{@current_player.name} 了"
           play = @current_player.play(@top_play, round == 1)
 
-          if play == :pass
+          if play == PASS
             # 如果是新的回合，頂牌玩家不可 pass
             if @top_play.nil? && @current_player_idx == @top_player_idx
-              puts '頂牌玩家不可 pass'
+              puts '頂牌玩家不可 PASS'
               next
             end
             

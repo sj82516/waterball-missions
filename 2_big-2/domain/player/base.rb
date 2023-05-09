@@ -3,6 +3,8 @@ require_relative '../hand'
 class InvalidPlay < StandardError
 end
 
+PASS = :pass
+
 class Player
   attr_reader :name, :hand
 
@@ -19,7 +21,6 @@ class Player
     @hand.add_card(card)
   end
 
-  PASS = :pass
 
   def play(top_play, is_first_round = false)
     play = create_play
@@ -37,7 +38,7 @@ class Player
       end
 
       if is_first_round
-        raise InvalidPlay unless play.cards.include?(CLUB_3)
+        raise InvalidPlay unless play.is_contain_club_3?
       end
     rescue InvalidPlay => e
       # 如果出牌不合法，則將牌收回
