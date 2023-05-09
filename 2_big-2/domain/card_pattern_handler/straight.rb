@@ -7,9 +7,10 @@ class StraightCardPatternComparison < CardPatternHandler
   def is_valid?(cards)
     return false if cards.size != 5
 
-    number_map = cards.group_by(&:rank)
-    return false if number_map.size != 2
-
-    number_map.values.map(&:size).sort == [2, 3]
+    # 依序排序後，檢查是否為連續的數字
+    sorted_cards = cards.sort
+    sorted_cards.each_cons(2).all? do |card, next_card|
+      card.rank + 1 % 13 == next_card.rank
+    end
   end
 end
