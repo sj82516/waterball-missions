@@ -1,13 +1,13 @@
 require_relative './domain/card'
 require_relative './domain/big_2'
-require_relative './domain/player/ai'
+require_relative './domain/player/human'
 
 def main
   big2 = Big2.new([
-    AiPlayer.new("水球"),
-    AiPlayer.new("火球"),
-    AiPlayer.new("保齡球"),
-    AiPlayer.new("地瓜球")
+    HumanPlayer.new,
+    HumanPlayer.new,
+    HumanPlayer.new,
+    HumanPlayer.new,
   ])
 
   # 手動塞牌

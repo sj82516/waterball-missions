@@ -10,7 +10,10 @@ class StraightCardPatternComparison < CardPatternHandler
     # 依序排序後，檢查是否為連續的數字
     sorted_cards = cards.sort
     sorted_cards.each_cons(2).all? do |card, next_card|
-      card.rank + 1 % 13 == next_card.rank
+      next true if (card.rank + 1) == next_card.rank
+      next true if card.rank == 12 && next_card.rank == 3 # A2345
+      next true if card.rank == 13 && next_card.rank == 4 # A2345
+      false
     end
   end
 end

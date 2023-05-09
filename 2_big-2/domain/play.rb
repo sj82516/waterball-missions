@@ -17,7 +17,15 @@ class Play
   end
 
   def to_s
-    "#{@pattern_hlr.pattern} #{@cards.map(&:to_s)}"
+    "#{@pattern_hlr.pattern} #{@cards.map(&:to_s).join("")}"
+  end
+
+  def is_same_pattern?(other_play)
+    pattern == other_play.pattern
+  end
+
+  def pattern
+    @pattern_hlr.pattern
   end
 
   def is_contain_club_3?

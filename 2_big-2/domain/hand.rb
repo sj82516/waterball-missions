@@ -13,6 +13,10 @@ class Hand
     @cards << card
   end
 
+  def remove_cards(cards)
+    @cards -= cards
+  end
+
   def create_play(card_idx)
     cards = card_idx.map { |idx| @cards[idx] }
     handler_chain = SingleCardPatternComparison.new(
@@ -21,7 +25,6 @@ class Hand
           PairCardPatternComparison.new)
       )
     )
-    @cards -= cards
 
     Play.new(cards, handler_chain)
   end
