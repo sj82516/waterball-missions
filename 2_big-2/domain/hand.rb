@@ -37,6 +37,7 @@ class Hand
       card_str = card.to_s
       idx_str = "#{idx}"
       max = [idx_str.size, card_str.size].max
+      # 需要對齊輸出
       idx_lines += idx_str + ' ' * (max - idx_str.size) + ' '
       card_lines += card_str + ' ' * (max - card_str.size) + ' '
     end
