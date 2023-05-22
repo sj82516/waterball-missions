@@ -1,8 +1,9 @@
 require_relative './base.rb'
-require_relative '../card_pattern/straight.rb'
 
 # 順子
-class StraightCardPatternHandler < CardPatternHandler
+class StraightCardPattern < CardPattern
+  NAME = '順子'.freeze
+
   def is_valid?(cards)
     return false if cards.size != 5
 
@@ -11,12 +12,8 @@ class StraightCardPatternHandler < CardPatternHandler
     sorted_cards.each_cons(2).all? do |card, next_card|
       next true if (card.rank + 1) == next_card.rank
       next true if card.rank == 12 && next_card.rank == 3 # A2345
-      next true if card.rank == 13 && next_card.rank == 4 # 23456
+      next true if card.rank == 13 && next_card.rank == 4 # A2345
       false
     end
-  end
-
-  def pattern
-    StraightCardPattern
   end
 end

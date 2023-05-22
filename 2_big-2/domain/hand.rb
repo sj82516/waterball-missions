@@ -19,10 +19,10 @@ class Hand
 
   def create_play(card_idx)
     cards = card_idx.map { |idx| @cards[idx] }
-    handler_chain = SingleCardPatternComparison.new(
-      FullHouseCardPatternComparison.new(
-        StraightCardPatternComparison.new(
-          PairCardPatternComparison.new)
+    handler_chain = SingleCardPatternHandler.new(
+      FullHouseCardPatternHandler.new(
+        StraightCardPatternHandler.new(
+          PairCardPatternHandler.new)
       )
     )
 

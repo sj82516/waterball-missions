@@ -6,26 +6,22 @@ class Play
   # @param [Array<Card>] cards
   def initialize(cards, pattern_handler_chain)
     @cards = cards
-    @pattern_hlr = pattern_handler_chain.find_pattern(cards)
-    raise InvalidPattern unless @pattern_hlr
+    @pattern = pattern_handler_chain.find_pattern(cards)
+    raise InvalidPattern unless @pattern
   end
 
-  attr_reader :cards
+  attr_reader :cards, :pattern
 
   def is_bigger?(other_play)
-    @pattern_hlr.is_bigger?(self, other_play)
+    @pattern.is_bigger?(self, other_play)
   end
 
   def to_s
-    "#{@pattern_hlr.pattern} #{@cards.map(&:to_s).join("")}"
+    "#{@pattern.name} #{@cards.map(&:to_s).join("")}"
   end
 
   def is_same_pattern?(other_play)
-    pattern == other_play.pattern
-  end
-
-  def pattern
-    @pattern_hlr.pattern
+    @pattern.is_same_pattern?(other_play)
   end
 
   def is_contain_club_3?
