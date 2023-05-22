@@ -1,10 +1,6 @@
 class CardPattern
   NAME = '未知'.freeze
 
-  def initialize(cards)
-    @cards = cards
-  end
-  
   def name
     self.class::NAME
   end

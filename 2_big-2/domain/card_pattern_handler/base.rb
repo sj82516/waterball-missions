@@ -5,7 +5,7 @@ class CardPatternHandler
   end
 
   def find_pattern(cards)
-    return pattern.new(cards) if is_valid?(cards)
+    return pattern.new if is_valid?(cards)
     return @next_handler.find_pattern(cards) if @next_handler
 
     nil
