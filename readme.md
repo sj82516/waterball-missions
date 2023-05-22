@@ -6,3 +6,4 @@ course page: https://world.waterballsa.tw
 - 2.1.H: strategy pattern (matchmaking_system)
 - 2.2.H: template method (card_framework)
 - 2.3.H: chain of responsibility pattern (collision)
+- 2.H: Big 2
