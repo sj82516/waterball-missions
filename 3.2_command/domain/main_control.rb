@@ -30,6 +30,7 @@ class MainControl
     return pp '按鈕未設定' if @button2commands[btn].nil?
 
     @undo_stack += @button2commands[btn]
+    @redo_stack.clear
     @button2commands[btn].each(&:execute)
   end
 
